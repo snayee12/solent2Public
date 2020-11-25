@@ -17,7 +17,7 @@ import solent.ac.uk.ood.examples.exam.web.rest.client.RestClientJerseyImpl;
  *
  * @author cgallen
  */
-public class RestClientJerseyImplTest  {
+public class RestClientJerseyImplTest {
 
     String baseUrl = "http://localhost:8080/";
 
