@@ -23,6 +23,7 @@ import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.solent.com528.project.impl.web.WebObjectFactory;
+import org.solent.com528.project.model.dao.PriceCalculatorDAO;
 import org.solent.com528.project.model.dao.StationDAO;
 import org.solent.com528.project.model.dto.PriceBand;
 import org.solent.com528.project.model.dto.PricingDetails;
@@ -72,11 +73,12 @@ public class TicketMachineRestService {
 
             ServiceFacade serviceFacade = WebObjectFactory.getServiceFacade();
             StationDAO stationDAO = serviceFacade.getStationDAO();
+            PriceCalculatorDAO priceCalculatorDAO = serviceFacade.getPriceCalculatorDAO();
             
             ReplyMessage replyMessage = new ReplyMessage();
             LOG.debug("/getTicketMachineConfig called  uuid=" + uuid);
-
-            if (uuid == null || uuid.isBlank()) {
+            // NOTE change this to uuid.isEmpty() if using java 8
+            if (uuid == null || uuid.isEmpty()) {
                 throw new IllegalArgumentException("uuid query must be defined ?uuid=xxx");
             }
             // get this from local properties
